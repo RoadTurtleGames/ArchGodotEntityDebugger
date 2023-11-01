@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://5dmngx31bwl"]
+
+[ext_resource type="Theme" uid="uid://h10awbykqga4" path="res://addons/Arch Entity Debugger/Assets/Theme_EntityViewer.tres" id="1_cy6kn"]
+[ext_resource type="Texture2D" uid="uid://bap27bhbdk6h1" path="res://addons/Arch Entity Debugger/Assets/Icons/handle.png" id="2_j4r8q"]
+
+[node name="EntityDebuggerWindow" type="Window"]
+transparent_bg = true
+position = Vector2i(0, 36)
+size = Vector2i(600, 600)
+always_on_top = true
+transparent = true
+min_size = Vector2i(600, 600)
+theme = ExtResource("1_cy6kn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="HeaderBar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 24)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 28.0
+grow_horizontal = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 28)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="WorldOptions" type="TabBar" parent="MarginContainer"]
+custom_minimum_size = Vector2(160, 10)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Container" type="VSplitContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -4
+theme_override_constants/minimum_grab_thickness = 16
+theme_override_icons/grabber = ExtResource("2_j4r8q")
+
+[node name="EntitiesListTree" type="Tree" parent="Container"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="EntityDetailsTree" type="Tree" parent="Container"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+scroll_horizontal_enabled = false

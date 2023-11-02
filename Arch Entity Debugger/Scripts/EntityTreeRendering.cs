@@ -1,7 +1,6 @@
 namespace RoadTurtleGames.ArchEntityDebugger;
 
 using Godot;
-using RoadTurtleGames.Logging;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -30,13 +29,13 @@ public static class EntityTreeRendering
                     if (type.IsGenericTypeDefinition)
                     {
                         genericTypedRenderers[renderedType] = type;
-                        Logger.LogInfo($"Loaded generic type {type.Name}");
+                        GD.Print($"Loaded generic type {type.Name}");
                     }
                     else
                     {
                         IEntityTreeRenderer instance = Activator.CreateInstance(type) as IEntityTreeRenderer;
                         customRenderers[renderedType] = instance;
-                        Logger.LogInfo($"Loaded type {type.Name}");
+                        GD.Print($"Loaded type {type.Name}");
                     }
                 }
             }

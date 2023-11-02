@@ -15,6 +15,5 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_a6t8t")
 script = ExtResource("2_g7ihv")
-activateOnReady = false
 refreshRate = 0.1
 debugWindowPrefab = ExtResource("3_7kx48")

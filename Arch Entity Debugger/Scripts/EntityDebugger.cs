@@ -76,8 +76,8 @@ public partial class EntityDebugger : Control
         debugWindow.Position = GetWindow().Position;
 
         worldOptions = debugWindow.GetNode<TabBar>("MarginContainer/WorldOptions");
-        entityListTree = debugWindow.GetNode<Tree>("Container/EntitiesListTree");
-        entityDetailsTree = debugWindow.GetNode<Tree>("Container/EntityDetailsTree");
+        entityListTree = debugWindow.GetNode<Tree>("MarginContainer2/Container/EntitiesListTree");
+        entityDetailsTree = debugWindow.GetNode<Tree>("MarginContainer2/Container/EntityDetailsTree");
 
         entityListTree.Connect("item_selected", Callable.From(OnEntitySelected));
         entityDetailsTree.Connect("button_clicked", Callable.From<TreeItem, int, int, int>(OnEntityComponentButtonClicked));
@@ -324,7 +324,7 @@ public partial class EntityDebugger : Control
 
     private void RefreshEntityDetailsTree()
     {
-        if (selectedEntity == EntityReference.Null)
+        if (!selectedEntity.IsAlive())
         {
             entityDetailsTree.Clear();
             return;

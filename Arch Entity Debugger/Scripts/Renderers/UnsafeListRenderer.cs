@@ -11,7 +11,7 @@ public class UnsafeListRenderer<T> : IEntityTreeRenderer
     {
         UnsafeList<T> unsafeList = (UnsafeList<T>)component;
 
-        rootItem.SetText(0, $"{fieldName} ({unsafeList.Count}/{unsafeList.Capacity})");
+        rootItem.SetText(0, $"{fieldName} ({unsafeList.Count}/{unsafeList.Capacity}):");
 
         Godot.Collections.Array<TreeItem> existingChildren = rootItem.GetChildren();
 

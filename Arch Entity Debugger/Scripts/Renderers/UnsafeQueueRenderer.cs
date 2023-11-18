@@ -11,7 +11,7 @@ public class UnsafeQueueRenderer<T> : IEntityTreeRenderer
     {
         UnsafeQueue<T> unsafeQueue = (UnsafeQueue<T>)component;
 
-        rootItem.SetText(0, $"{fieldName} | Capacity {unsafeQueue.Capacity}:");
+        rootItem.SetText(0, $"{fieldName} ({unsafeQueue.Count}/{unsafeQueue.Capacity}):");
 
         int i = 0;
         foreach (T item in unsafeQueue)

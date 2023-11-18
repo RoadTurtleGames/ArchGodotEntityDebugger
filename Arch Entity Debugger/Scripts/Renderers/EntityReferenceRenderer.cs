@@ -24,6 +24,11 @@ public class EntityReferenceRenderer : IEntityTreeRenderer
             rootItem.SetText(0, $"{fieldName}: REF{{NULL}}");
             rootItem.SetCustomColor(0, Colors.IndianRed);
         }
+        else if (!entityRef.IsAlive())
+        {
+            rootItem.SetText(0, $"{fieldName}: REF{{INVALID}}");
+            rootItem.SetCustomColor(0, Colors.MediumVioletRed);
+        }
         else
         {
             rootItem.SetText(0, $"{fieldName}: REF{{{entityRef.Entity.Id}}}");

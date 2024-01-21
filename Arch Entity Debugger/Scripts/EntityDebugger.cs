@@ -188,7 +188,7 @@ public partial class EntityDebugger : Control
                 archetypeKey = stringBuilder.ToString();
             }
 
-            if (archetype.Entities == 0)
+            if (archetype.EntityCount == 0)
             {
                 if (archetypeItems.ContainsKey(archetypeKey))
                 {
@@ -230,7 +230,7 @@ public partial class EntityDebugger : Control
             }
 
             TreeItem archetypeItem = parentItem;
-            archetypeItem.SetText(1, archetype.Entities.ToString());
+            archetypeItem.SetText(1, archetype.EntityCount.ToString());
 
             foreach (ref Chunk chunk in archetype)
             {

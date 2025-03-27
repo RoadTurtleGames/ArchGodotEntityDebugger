@@ -23,7 +23,7 @@ To do so add the Entity_Debugger_Hotkey_toggler.tscn scene and set the entityDeb
 Some public methods are exposed to allow you to control the debugger externally. You can show/hide the debugger, select an entity, or select an active world.
 
 - SetActive(int index) : Sets the window's visibility, and enables/disables processing of entities
-- SelectEntity(EntityReference entity) : Selects an entity in the details tree
+- SelectEntity(Entity entity) : Selects an entity in the details tree
 - SetWorld(int index) : Sets the active world to display entities from
 
 ## Customization / Extension

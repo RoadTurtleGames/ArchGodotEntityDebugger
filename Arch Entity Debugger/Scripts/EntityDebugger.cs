@@ -21,7 +21,7 @@ public partial class EntityDebugger : Control
     private PackedScene debugWindowPrefab;
     private Window debugWindow;
 
-    private EntityReference selectedEntity = EntityReference.Null;
+    private Entity selectedEntity = Entity.Null;
 
     private double timer;
 
@@ -44,7 +44,7 @@ public partial class EntityDebugger : Control
         if (index > 0 && index < World.WorldSize)
         {
             worldOptions.CurrentTab = index;
-            selectedEntity = EntityReference.Null;
+            selectedEntity = Entity.Null;
             entityDetailsTree.Clear();
             ClearEntityListTree();
         }
@@ -54,7 +54,7 @@ public partial class EntityDebugger : Control
     /// Selects an entity in the details tree
     /// </summary>
     /// <param name="entity"></param>
-    public void SelectEntity(EntityReference entity)
+    public void SelectEntity(Entity entity)
     {
         if (selectedEntity != entity)
         {
@@ -174,11 +174,11 @@ public partial class EntityDebugger : Control
 
         foreach (ref Archetype archetype in ActiveWorld)
         {
-            if (!ArchetypeManager.TryGetArchetypeDisplayName(archetype.Types, out string archetypeKey))
+            if (!ArchetypeManager.TryGetArchetypeDisplayName(archetype.Signature, out string archetypeKey))
             {
                 stringBuilder.Clear();
 
-                foreach (Arch.Core.Utils.ComponentType type in archetype.Types)
+                foreach (Arch.Core.Utils.ComponentType type in archetype.Signature)
                 {
                     stringBuilder.Append(type.Type.Name).Append(", ");
                 }
@@ -237,7 +237,7 @@ public partial class EntityDebugger : Control
                 foreach (int index in chunk)
                 {
                     Entity entity = chunk.Entities[index];
-                    string entityIdKey = $"{entity.Id} | {entity.Version()}";
+                    string entityIdKey = $"{entity.Id} | {entity.Version}";
                     currentEntities.Add(entityIdKey);
 
                     if (!entityItems.ContainsKey(entityIdKey))
@@ -249,7 +249,7 @@ public partial class EntityDebugger : Control
                     }
 
                     TreeItem entityItem = entityItems[entityIdKey];
-                    if (entity == selectedEntity.Entity)
+                    if (entity == selectedEntity)
                     {
                         entityListTree.Disconnect("item_selected", Callable.From(OnEntitySelected));
                         entityItem.Select(0);
@@ -282,7 +282,7 @@ public partial class EntityDebugger : Control
         }
         Variant selectedMetadata = selected.GetMetadata(0);
         Entity entity = FindEntityById((int)selectedMetadata);
-        SelectEntity(entity.Reference());
+        SelectEntity(entity);
     }
 
     private void OnEntityComponentButtonClicked(TreeItem item, int buttonId, int column, int mouseButtonIndex)
@@ -294,7 +294,7 @@ public partial class EntityDebugger : Control
             if (buttonId == 0)
             {
                 Entity entity = FindEntityById(entityId);
-                SelectEntity(entity.Reference());
+                SelectEntity(entity);
             }
             if (buttonId == 1)
             {
@@ -330,7 +330,7 @@ public partial class EntityDebugger : Control
             return;
         }
 
-        Entity entity = selectedEntity.Entity;
+        Entity entity = selectedEntity;
 
         TreeItem entityRoot = entityDetailsTree.GetRoot();
 
@@ -342,7 +342,7 @@ public partial class EntityDebugger : Control
             else
                 archetypeName = "Entity";
 
-            entityRoot.SetText(0, $"{archetypeName} | ID: {entity.Id} | Version: {entity.Version()}");
+            entityRoot.SetText(0, $"{archetypeName} | ID: {entity.Id} | Version: {entity.Version}");
         }
 
         object[] components = entity.GetAllComponents();

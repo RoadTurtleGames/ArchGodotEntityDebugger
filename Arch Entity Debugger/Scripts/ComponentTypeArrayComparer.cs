@@ -3,6 +3,7 @@ namespace RoadTurtleGames.ArchEntityDebugger;
 using Arch.Core.Utils;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
 
 /// <summary>
 /// Custom comparer for ComponentType arrays.

@@ -4,6 +4,7 @@ using Arch.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Arch.Core;
 
 /// <summary>
 /// Manages the mapping between archetypes and their display names.

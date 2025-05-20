@@ -178,7 +178,7 @@ public partial class EntityDebugger : Control
             {
                 stringBuilder.Clear();
 
-                foreach (Arch.Core.Utils.ComponentType type in archetype.Signature)
+                foreach (Arch.Core.ComponentType type in archetype.Signature)
                 {
                     stringBuilder.Append(type.Type.Name).Append(", ");
                 }
